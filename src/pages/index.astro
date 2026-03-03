@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Taskbar from '../components/Taskbar.astro';
+import Hero from '../components/Hero.astro';
+---
+
+<Layout>
+  <Taskbar />
+  <main>
+    <Hero />
+    <section id="features" class="max-w-4xl mx-auto px-4 py-8">
+      <h2 class="text-2xl font-semibold mb-2">Features</h2>
+      <p>Simple static site scaffolded with Astro + Tailwind.</p>
+    </section>
+  </main>
+</Layout>

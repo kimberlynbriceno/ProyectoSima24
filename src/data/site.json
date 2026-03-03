@@ -1,0 +1,15 @@
+{
+  "title": "Astro Tailwind Taskbar",
+  "description": "A starter site scaffolded with Astro + Tailwind. Will become dynamic later.",
+  "about": "This site demonstrates a simple static-first workflow using Astro and Tailwind. It includes a drop-down taskbar, a hero section with a call-to-action, and pages ready to be enhanced with dynamic data.",
+  "team": [
+    { "name": "Alice", "role": "Developer" },
+    { "name": "Bob", "role": "Designer" }
+  ],
+  "features": [
+    "Static-first scaffold",
+    "Tailwind CSS styling",
+    "Astro pages & components",
+    "Drop-down taskbar"
+  ]
+}

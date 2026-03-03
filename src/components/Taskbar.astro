@@ -1,0 +1,18 @@
+---
+// Simple drop-down taskbar component
+---
+<nav class="bg-white border-b">
+  <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+    <div class="text-lg font-semibold">MySite</div>
+    <div>
+      <details class="relative">
+        <summary class="cursor-pointer px-3 py-2 rounded-md hover:bg-gray-100">Menu ▾</summary>
+        <div class="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg">
+          <a class="block px-4 py-2 hover:bg-gray-50" href="#features">Features</a>
+          <a class="block px-4 py-2 hover:bg-gray-50" href="#pricing">Pricing</a>
+          <a class="block px-4 py-2 hover:bg-gray-50" href="/about">About</a>
+        </div>
+      </details>
+    </div>
+  </div>
+</nav>
