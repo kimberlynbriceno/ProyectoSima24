@@ -1,18 +1,46 @@
 ---
-// Simple drop-down taskbar component
+// Aquí podrías definir los enlaces en un array para que sea más fácil editarlos luego
+const navLinks = [
+  
+  { name: 'Servicios', href: '#servicios' },
+  { name: 'Planes de afiliacion', href: '#Planes de afiliacion' },
+  { name: 'Nosotros', href: '#Nosotros' },
+];
 ---
-<nav class="bg-white border-b">
-  <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
-    <div class="text-lg font-semibold">MySite</div>
-    <div>
-      <details class="relative">
-        <summary class="cursor-pointer px-3 py-2 rounded-md hover:bg-gray-100">Menu ▾</summary>
-        <div class="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg">
-          <a class="block px-4 py-2 hover:bg-gray-50" href="#features">Features</a>
-          <a class="block px-4 py-2 hover:bg-gray-50" href="#pricing">Pricing</a>
-          <a class="block px-4 py-2 hover:bg-gray-50" href="/about">About</a>
-        </div>
-      </details>
+
+<nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    
+    <div class="flex items-center gap-2">
+      <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">
+        S
+      </div>
+      <span class="text-2xl font-black text-blue-900 tracking-tighter uppercase">Sima24</span>
+    </div>
+
+    <div class="flex items-center gap-10">
+      
+      <div class="hidden lg:flex items-center gap-8">
+        {navLinks.map(link => (
+          <a href={link.href} class="text-sm uppercase tracking-wide font-bold text-gray-500 hover:text-blue-600 transition-colors">
+            {link.name}
+          </a>
+        ))}
+      </div>
+
+      <div class="flex items-center gap-4">
+        <a href="tel:+58..." class="hidden sm:flex text-blue-700 font-bold hover:bg-blue-50 px-4 py-2 rounded-full text-sm">
+          Recursos 
+        </a>
+        <a href="#afiliate" class="bg-blue-600 text-white px-6 py-2.5 rounded-full font-bold shadow-lg shadow-blue-200 hover:bg-blue-700 hover:-translate-y-0.5 transition-all text-sm">
+         EmergenciaS 24/7
+        </a>
+        
+        <button class="lg:hidden text-gray-600">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
+      </div>
+
     </div>
   </div>
 </nav>

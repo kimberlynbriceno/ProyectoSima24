@@ -2,15 +2,50 @@
 import Layout from '../layouts/Layout.astro';
 import Taskbar from '../components/Taskbar.astro';
 import Hero from '../components/Hero.astro';
+import ServiceCard from '../components/ServiceCard.astro';
 ---
 
 <Layout>
   <Taskbar />
   <main>
     <Hero />
-    <section id="features" class="max-w-4xl mx-auto px-4 py-8">
-      <h2 class="text-2xl font-semibold mb-2">Features</h2>
-      <p>Simple static site scaffolded with Astro + Tailwind.</p>
-    </section>
+    <section class="py-16 bg-gray-50 px-6">
+  <div class="max-w-6xl mx-auto text-center mb-12">
+    <h2 class="text-3xl font-extrabold text-blue-900">
+      Cobertura Regional y Nacional Inmediata
+    </h2>
+    <p class="text-gray-500 mt-2">Llegamos donde nos necesites por tierra y aire.</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+    
+    <ServiceCard 
+      icon="fas fa-ambulance"
+      title="Infraestructura UCI"
+      description="Nuestras ambulancias UCI están equipadas para traslados de alta complejidad. Cobertura total en el Eje Panamericano y Sur del Lago."
+    />
+
+    <ServiceCard 
+      icon="fas fa-plane-departure"
+      title="Traslado Aéreo"
+      description="Aviones adaptados para traslados nacionales. Conexión rápida desde San Cristóbal o Mérida hacia centros especializados."
+    />
+
+    <ServiceCard 
+      icon="fas fa-handshake"
+      title="Red de Farmacias Aliadas"
+      description="Beneficio de medicinas para nuestros clientes en la región. Obtén tranquilidad y facilidades de pago para tu familia."
+    />
+
+  </div>
+
+  <div class="mt-12 text-center">
+    <p class="text-blue-800 font-semibold mb-4">¿Necesitas coordinar un traslado de larga distancia?</p>
+    <a href="https://wa.me/tu-numero" class="inline-flex items-center bg-blue-700 text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-800 transition">
+      Solicitar Cotización de Traslado
+      <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+    </a>
+  </div>
+</section>
   </main>
 </Layout>
