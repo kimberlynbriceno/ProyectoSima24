@@ -9,8 +9,12 @@ import ServiceCard from '../components/ServiceCard.astro';
   <Taskbar />
   <main>
     <Hero />
-    <section class="py-16 bg-gray-50 px-6">
-  <div class="max-w-6xl mx-auto text-center mb-12">
+    <section class="relative py-20 px-6 bg-[#ECF9FF] overflow-hidden">
+      <div class="absolute inset-0 z-0 opacity-10 flex justify-center items-center pointer-events-none">
+    <img src="/src/image/mapa-fondo.jpg" alt="" class="w-full max-w-5xl object-contain" />
+    </div>
+
+    <div class="max-w-6xl mx-auto text-center mb-12">
     <h2 class="text-3xl font-extrabold text-blue-900">
       Cobertura Regional y Nacional Inmediata
     </h2>
@@ -43,7 +47,7 @@ import ServiceCard from '../components/ServiceCard.astro';
     <p class="text-blue-800 font-semibold mb-4">¿Necesitas coordinar un traslado de larga distancia?</p>
     <a href="https://wa.me/tu-numero" class="inline-flex items-center bg-blue-700 text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-800 transition">
       Solicitar Cotización de Traslado
-      <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          
     </a>
   </div>
 </section>
