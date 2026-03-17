@@ -33,11 +33,53 @@ const navLinks = [
          EmergenciaS 24/7
         </a>
         
-        <button class="lg:hidden text-gray-600">
-          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        <button id="menu-toggle" class="lg:hidden text-gray-600">
+          <svg id="hamburger-icon" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
         </button>
       </div>
 
     </div>
   </div>
+  <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 overflow-hidden transition-all duration-300 shadow-xl">
+    <div class="flex flex-col p-6 space-y-4">
+      {navLinks.map(link => (
+        <a href={link.href} class="text-base text-center font-semibold text-gray-800 hover:text-blue-600 border-b border-gray-50 pb-2 link-mobile">
+          {link.name}
+        </a>
+      ))}
+    </div>
+  </div>
 </nav>
+<script>
+  // Lógica de Astro: Este script se ejecuta en el cliente
+  const setupNavbar = () => {
+    const btn = document.getElementById('menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    const icon = document.getElementById('hamburger-icon');
+    const links = document.querySelectorAll('.link-mobile');
+
+    if (btn && menu && icon) {
+      btn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+        
+        // Cambiamos el icono a una 'X' cuando esté abierto
+        const isOpen = !menu.classList.contains('hidden');
+        icon.innerHTML = isOpen 
+          ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />'
+          : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />';
+      });
+
+      // Cerrar automáticamente al hacer clic en un enlace (para SPA-like feel)
+      links.forEach(link => {
+        link.addEventListener('click', () => {
+          menu.classList.add('hidden');
+          icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />';
+        });
+      });
+    }
+  };
+
+  // Ejecutar en la carga inicial y tras navegaciones de Astro (si usas View Transitions)
+  setupNavbar();
+  document.addEventListener('astro:after-swap', setupNavbar);
+</script>

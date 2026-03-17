@@ -1,13 +1,13 @@
 ---
 // Props para que cada tarjeta tenga su propio icono, título y texto
-const { title, description, icon, href } = Astro.props;
+const { title, description, href } = Astro.props;
 ---
-<div class="bg-white/60 backdrop-blur-md border border-white/20 p-8 rounded-2xl shadow-lg flex flex-col h-full hover:shadow-xl transition-all duration-300">
-  <div class="mb-6 text-blue-600">
+<div class="bg-gradient-to-r from-[#EEFFFB] to-[#C3D6F0] shadow-md shadow-blue-200 backdrop-blur-md border  p-8 rounded-2xl flex flex-col h-full hover:shadow-xl transition-all duration-300">
+  <div class="mb-6 text-blue-900">
     <slot name="icon" />
   </div>
 
-  <h3 class="text-xl font-black text-blue-900 mb-4 font-montserrat">
+  <h3 class="text-xl font-black text-black mb-4 font-montserrat">
     {title}
   </h3>
 
