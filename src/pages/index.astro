@@ -4,6 +4,9 @@ import Taskbar from '../components/Taskbar.astro';
 import Hero from '../components/Hero.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import PricingSection from '../pages/PricingSection.astro';
+import { sanityClient } from "sanity:client";
+const servicio = await sanityClient.fetch(`*[_type == "servicio"]`);
+console.log("Datos de Sanity:", servicio);
 ---
 
 <Layout>
@@ -11,7 +14,6 @@ import PricingSection from '../pages/PricingSection.astro';
   <main>
     <Hero />
     <section class="relative py-20 px-6 bg-[#ECF9FF] overflow-hidden">
-  
   <div class="absolute inset-0 z-0 flex justify-center items-center pointer-events-none">
     <img 
       src="/src/image/mapa-fondo.jpg" 
@@ -32,29 +34,16 @@ import PricingSection from '../pages/PricingSection.astro';
     </div>
  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
   
+   {
+  servicio.map((item) => (
     <ServiceCard 
-      title="Infraestructura UCI"
-      description="Nuestras ambulancias UCI están equipadas para traslados de alta complejidad y soporte vital avanzado. Cobertura total en el Eje Panamericano (Tucaní, La Tendida) y Sur del Lago (Santa Bárbara).">
-    <svg slot="icon"
-  xmlns="http://www.w3.org/2000/svg" 
-  width="40" 
-  height="40" 
-  viewBox="0 0 24 24" 
-  fill="none" 
-  stroke="#0066FF" 
-  stroke-width="2" 
-  stroke-linecap="round" 
-  stroke-linejoin="round" 
-  class="lucide lucide-ambulance"
->
-  <path d="M10 10H6" />
-  <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
-  <path d="M19 18h2a1 1 0 0 0 1-1v-3.28a1 1 0 0 0-.684-.948l-4.83-1.583a2 2 0 0 1-1.382-1.902V6a2 2 0 0 0-2-2h-2" />
-  <circle cx="7" cy="18" r="2" />
-  <circle cx="17" cy="18" r="2" />
-  <path d="M8 14h4" />
-</svg>
+      title={item.title || item.nombre} 
+      description={item.description || item.descripcion}
+    >
+      {/* Tu SVG aquí */}
     </ServiceCard>
+  ))
+}
 
     <ServiceCard 
       title="Traslado Aéreo"

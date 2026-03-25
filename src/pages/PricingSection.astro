@@ -13,62 +13,63 @@ import PricingCard from '../components/PricingCard.astro';
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      
+  <div class="relative max-w-7xl mx-auto">
+  <div class="flex lg:grid lg:grid-cols-4 gap-6 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide">
+    
+    <div class="min-w-[85%] md:min-w-[45%] lg:min-w-full snap-center">
       <PricingCard 
         isFeatured={true}
         title="Plan Gremios Mototaxistas (El Vigía - Mérida)"
-        subtitle="Protección médica especializada para mototaxistas y pasajeros en el Eje Panamericano."
-        features={[
-          "Ambulancia 24/7 por accidentes.",
+        subtitle="Protección médica especializada para mototaxistas y pasajeros..."
+        features={["Ambulancia 24/7 por accidentes.",
           "Atención del pasajero.",
           "Consulta médica gratis.",
           "Rayos X para lesiones por accidentes de trabajo.",
-          "Alianza para medicamentos a crédito."
-        ]}
+          "Alianza para medicamentos a crédito."]}
       />
+    </div>
 
+    <div class="min-w-[85%] md:min-w-[45%] lg:min-w-full snap-center">
       <PricingCard 
         title="Plan Moto Particular"
-        subtitle="Protección médica inmediata y traslados de emergencia para motorizados en El Vigía."
-        features={[
-          "Ambulancia 24/7 Respuesta inmediata en El Vigía para accidentes laborales.",
+        subtitle="Protección médica inmediata para motorizados en El Vigía."
+        features={["Ambulancia 24/7 Respuesta inmediata en El Vigía para accidentes laborales.",
           "Consultas gratuitas para afiliados y familiares directos en nuestro consultorio.",
-          "Rayos X sin costo por accidentes laborales sin cargos adicionales.",
-          "Alianza para medicamentos a crédito Farmabien."
-        ]}
+          "Rayos X sin costo por accidentes laborales .",
+          "Alianza para medicamentos a crédito Farmabien."]}
       />
+    </div>
 
+    <div class="min-w-[85%] md:min-w-[45%] lg:min-w-full snap-center">
       <PricingCard 
         title="Plan Hogar Crónico-Paliativo"
-        subtitle="Cuidados médicos especializados y acompañamiento en casa para pacientes crónicos."
-        features={[
-          "Ambulancia Prioritaria.",
+        subtitle="Cuidados médicos especializados y acompañamiento en casa."
+        features={["Ambulancia Prioritaria.",
           "Telemedicina profesional inmediata.",
           "02 Consultas frecuentes al mes.",
           "02 traslados mensuales externos.",
           "Control a distancia seguimiento.",
-          "Medicamentos a crédito farmabien."
-        ]}
+          "Medicamentos a crédito farmabien."]}
       />
+    </div>
 
+    <div class="min-w-[85%] md:min-w-[45%] lg:min-w-full snap-center">
       <PricingCard 
         title="Sima Empresa"
-        subtitle="Soluciones de salud para el bienestar de tus colaboradores y protección laboral."
-        features={[
-          "Atención inmediata en planta.",
+        subtitle="Soluciones de salud para el bienestar de tus colaboradores."
+        features={["Atención inmediata en planta.",
           "Exámenes pre-empleo.",
           "Capacitación en primeros auxilios.",
-          "Descuentos corporativos en servicios UCI."
-        ]}
+          "Descuentos corporativos en servicios UCI."]}
       />
     </div>
-
-    <div class="flex justify-center gap-2 mt-12">
-      <span class="w-3 h-3 rounded-full bg-gray-300"></span>
-      <span class="w-3 h-3 rounded-full bg-[#0056b3]"></span>
-      <span class="w-3 h-3 rounded-full bg-gray-300"></span>
-      <span class="w-3 h-3 rounded-full bg-gray-300"></span>
-    </div>
   </div>
+
+  <div class="flex justify-center gap-2 mt-4 lg:hidden">
+    <div class="w-2 h-2 rounded-full bg-blue-600"></div>
+    <div class="w-2 h-2 rounded-full bg-gray-300"></div>
+    <div class="w-2 h-2 rounded-full bg-gray-300"></div>
+    <div class="w-2 h-2 rounded-full bg-gray-300"></div>
+  </div>
+</div>
 </section>

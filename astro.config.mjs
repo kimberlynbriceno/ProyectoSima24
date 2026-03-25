@@ -1,5 +1,18 @@
 import { defineConfig } from 'astro/config';
+import sanity from "@sanity/astro";
 
 export default defineConfig({
-  integrations: []
+  integrations: [
+    sanity({
+      projectId: "avzcppcx",
+      dataset: "production",
+      useCdn: false, // Cámbialo a false para ver los cambios de Sanity al instante mientras desarrollas
+      apiVersion: "2024-03-25",
+    }),
+  ],
+  vite: {
+    ssr: {
+      noExternal: ['tslib', 'rxjs'] // Esto elimina definitivamente los errores rojos que veías
+    }
+  }
 });
