@@ -17,3 +17,13 @@ import '../styles/global.css';
     <slot />
   </body>
 </html>
+<style is:global>
+  /* Este estilo se aplicará a toda la web */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>

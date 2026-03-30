@@ -1,75 +1,138 @@
 ---
 import PricingCard from '../components/PricingCard.astro';
+
+const plans = [
+  {
+    isFeatured: true,
+    title: "Plan Gremios Mototaxistas (El Vigía - Mérida)",
+    subtitle: "Protección médica especializada para mototaxistas y pasajeros...",
+    features: [
+      "Ambulancia 24/7 por accidentes.",
+      "Atención del pasajero.",
+      "Consulta médica gratis.",
+      "Rayos X para lesiones por accidentes de trabajo.",
+      "Alianza para medicamentos a crédito."
+    ]
+  },
+  {
+    isFeatured: false,
+    title: "Plan Moto Particular",
+    subtitle: "Protección médica inmediata para motorizados en El Vigía.",
+    features: [
+      "Ambulancia 24/7 Respuesta inmediata en El Vigía para accidentes laborales.",
+      "Consultas gratuitas para afiliados y familiares directos en nuestro consultorio.",
+      "Rayos X sin costo por accidentes laborales.",
+      "Alianza para medicamentos a crédito Farmabien."
+    ]
+  },
+  {
+    isFeatured: false,
+    title: "Plan Hogar Crónico-Paliativo",
+    subtitle: "Cuidados médicos especializados y acompañamiento en casa.",
+    features: [
+      "Ambulancia Prioritaria.",
+      "Telemedicina profesional inmediata.",
+      "02 Consultas frecuentes al mes.",
+      "02 traslados mensuales externos.",
+      "Control a distancia seguimiento.",
+      "Medicamentos a crédito farmabien."
+    ]
+  },
+  {
+    isFeatured: false,
+    title: "Sima Empresa",
+    subtitle: "Soluciones de salud para el bienestar de tus colaboradores.",
+    features: [
+      "Atención inmediata en planta.",
+      "Exámenes pre-empleo.",
+      "Capacitación en primeros auxilios.",
+      "Descuentos corporativos en servicios UCI."
+    ]
+  }
+];
 ---
 
-<section id="planes" class="py-20 px-6 bg-white overflow-hidden">
+<section id="planes" class="py-20 px-6 bg-white overflow-hidden font-montserrat">
   <div class="max-w-7xl mx-auto">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-black text-[#0056b3] mb-6 font-montserrat">
-        Elige el plan que mejor se <br class="hidden md:block" /> adapta a ti
-      </h2>
-      <p class="text-gray-600 font-medium max-w-2xl mx-auto font-montserrat">
-        Descubre la protección médica integral pensada para familias, empresas y adultos mayores.
-      </p>
-    </div>
+    <div class="relative">
+      <div id="pricing-scroll-container" class="flex items-stretch lg:grid lg:grid-cols-4 gap-6 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide">
+        {plans.map((plan, index) => (
+          <div class="min-w-[85%] md:min-w-[45%] lg:min-w-full snap-center pricing-card-wrapper flex self-stretch" data-index={index}>
+            <PricingCard {...plan} />
+          </div>
+        ))}
+      </div>
 
-  <div class="relative max-w-7xl mx-auto">
-  <div class="flex lg:grid lg:grid-cols-4 gap-6 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide">
-    
-    <div class="min-w-[85%] md:min-w-[45%] lg:min-w-full snap-center">
-      <PricingCard 
-        isFeatured={true}
-        title="Plan Gremios Mototaxistas (El Vigía - Mérida)"
-        subtitle="Protección médica especializada para mototaxistas y pasajeros..."
-        features={["Ambulancia 24/7 por accidentes.",
-          "Atención del pasajero.",
-          "Consulta médica gratis.",
-          "Rayos X para lesiones por accidentes de trabajo.",
-          "Alianza para medicamentos a crédito."]}
-      />
-    </div>
-
-    <div class="min-w-[85%] md:min-w-[45%] lg:min-w-full snap-center">
-      <PricingCard 
-        title="Plan Moto Particular"
-        subtitle="Protección médica inmediata para motorizados en El Vigía."
-        features={["Ambulancia 24/7 Respuesta inmediata en El Vigía para accidentes laborales.",
-          "Consultas gratuitas para afiliados y familiares directos en nuestro consultorio.",
-          "Rayos X sin costo por accidentes laborales .",
-          "Alianza para medicamentos a crédito Farmabien."]}
-      />
-    </div>
-
-    <div class="min-w-[85%] md:min-w-[45%] lg:min-w-full snap-center">
-      <PricingCard 
-        title="Plan Hogar Crónico-Paliativo"
-        subtitle="Cuidados médicos especializados y acompañamiento en casa."
-        features={["Ambulancia Prioritaria.",
-          "Telemedicina profesional inmediata.",
-          "02 Consultas frecuentes al mes.",
-          "02 traslados mensuales externos.",
-          "Control a distancia seguimiento.",
-          "Medicamentos a crédito farmabien."]}
-      />
-    </div>
-
-    <div class="min-w-[85%] md:min-w-[45%] lg:min-w-full snap-center">
-      <PricingCard 
-        title="Sima Empresa"
-        subtitle="Soluciones de salud para el bienestar de tus colaboradores."
-        features={["Atención inmediata en planta.",
-          "Exámenes pre-empleo.",
-          "Capacitación en primeros auxilios.",
-          "Descuentos corporativos en servicios UCI."]}
-      />
+      <div class="flex justify-center gap-2 mt-4 lg:hidden">
+        {plans.map((_, index) => (
+          <div class={`pricing-dot w-2 h-2 rounded-full transition-all duration-300 bg-gray-300`} data-index={index}></div>
+        ))}
+      </div>
     </div>
   </div>
-
-  <div class="flex justify-center gap-2 mt-4 lg:hidden">
-    <div class="w-2 h-2 rounded-full bg-blue-600"></div>
-    <div class="w-2 h-2 rounded-full bg-gray-300"></div>
-    <div class="w-2 h-2 rounded-full bg-gray-300"></div>
-    <div class="w-2 h-2 rounded-full bg-gray-300"></div>
-  </div>
-</div>
 </section>
+
+<style is:global>
+  /* Ocultar barra de scroll pero mantener funcionalidad */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
+
+<script>
+  function handlePricingInteractions() {
+    const isMobile = window.innerWidth < 1024;
+    const container = document.getElementById('pricing-scroll-container');
+    const cards = document.querySelectorAll('.pricing-card-wrapper');
+    const dots = document.querySelectorAll('.pricing-dot');
+
+    if (!container || cards.length === 0) return;
+
+    if (!isMobile) {
+      cards.forEach(card => {
+        const inner = card.querySelector('.pricing-card-inner');
+        // Limpiamos las clases forzadas si pasamos a Desktop
+        inner?.classList.remove('!bg-[#0056b3]', '!border-[#0056b3]', '!text-white', 'scale-105', 'shadow-xl');
+      });
+      return;
+    }
+
+    const observerOptions = {
+      root: container,
+      threshold: 0.6
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const cardInner = entry.target.querySelector('.pricing-card-inner');
+        const index = entry.target.getAttribute('data-index');
+        const dot = dots[index];
+
+        if (entry.isIntersecting) {
+          // Usamos "!" para asegurar que el azul gane sobre el blanco original
+          cardInner?.classList.add('!bg-[#0056b3]', '!border-[#0056b3]', '!text-white', 'scale-105', 'shadow-xl');
+          cardInner?.classList.remove('bg-white', 'text-gray-800');
+          
+          dot?.classList.add('bg-blue-600', 'w-5');
+          dot?.classList.remove('bg-gray-300');
+        } else {
+          cardInner?.classList.remove('!bg-[#0056b3]', '!border-[#0056b3]', '!text-white', 'scale-105', 'shadow-xl');
+          cardInner?.classList.add('bg-white', 'text-gray-800');
+          
+          dot?.classList.remove('bg-blue-600', 'w-5');
+          dot?.classList.add('bg-gray-300');
+        }
+      });
+    }, observerOptions);
+
+    cards.forEach((card) => observer.observe(card));
+  }
+
+  handlePricingInteractions();
+  window.addEventListener('resize', handlePricingInteractions);
+  document.addEventListener('astro:after-swap', handlePricingInteractions);
+</script>
