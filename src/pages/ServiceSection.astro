@@ -1,0 +1,128 @@
+---
+import ServiceCard from '../components/ServiceCard.astro';
+import { client as sanity } from '../lib/sanity.mjs';
+const servicio = await sanity.fetch('*[_type == "servicio"]');
+console.log("Datos de Sanity:", servicio);
+---
+
+<section class="relative py-20 px-6 bg-[#ECF9FF] overflow-hidden">
+  <div class="absolute inset-0 z-0 flex justify-center items-center pointer-events-none">
+    <img 
+      src="/src/image/mapa-fondo.jpg" 
+      alt="Mapa de fondo" 
+      class="w-full max-w-5xl object-contain opacity-10" 
+    />
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto">
+    
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-black text-[#0056b3] mb-6 font-montserrat">
+        Cobertura Regional y Nacional Inmediata
+      </h2>
+      <p class="text-gray-600 font-medium max-w-2xl mx-auto font-montserrat">
+        Llegamos donde nos necesites por tierra y aire, garantizando soporte vital avanzado en cada kilómetro.
+      </p>
+    </div>
+
+    <div 
+      id="services-scroll-container" 
+      class="flex overflow-x-auto pb-8 gap-6 snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-2 lg:grid-cols-3 md:overflow-visible md:pb-0"
+    >
+      {servicio.map((item, index) => (
+        <div class="min-w-[85%] sm:min-w-[45%] md:min-w-full snap-center flex h-full service-card-wrapper" data-index={index}>
+          <ServiceCard 
+            title={item.title || item.nombre} 
+            description={item.description || item.descripcion}
+          >
+            </ServiceCard>
+        </div>
+      ))}
+
+      <div class="min-w-[85%] sm:min-w-[45%] md:min-w-full snap-center flex h-full service-card-wrapper" data-index={servicio.length}>
+        <ServiceCard 
+          title="Traslado Aéreo"
+          description="Contamos con diferentes aviones adaptados a las necesidades del paciente para traslados nacionales. Conexión rápida desde San Cristóbal o Mérida hacia centros especializados en todo el país.">
+          <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0066FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z" />
+          </svg>
+        </ServiceCard>
+      </div>
+
+      <div class="min-w-[85%] sm:min-w-[45%] md:min-w-full snap-center flex h-full service-card-wrapper" data-index={servicio.length + 1}>
+        <ServiceCard 
+          title="Red de Farmacias Aliadas"
+          description="Beneficio de medicinas mediante alianzas con farmacias para todos nuestros clientes en la región. Obtén tranquilidad incluso fuera de El Vigía con facilidades de pago para ti y tu familia. ¡Protección asegurada!">
+          <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0066FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="18" height="18" x="3" y="3" rx="2" />
+            <path d="M8 12h8" />
+            <path d="M12 8v8" />
+          </svg>
+        </ServiceCard>
+      </div>
+    </div>
+
+    <div class="flex justify-center gap-2 mt-6 md:hidden">
+      {[...Array(servicio.length + 2)].map((_, i) => (
+        <div 
+          class="service-dot w-2 h-2 rounded-full bg-gray-300 transition-all duration-300" 
+          data-index={i}
+        ></div>
+      ))}
+    </div>
+  </div>
+
+  <div class="mt-16 text-center relative z-10">
+    <p class="text-blue-800 font-semibold mb-6">
+      ¿Necesitas coordinar un traslado de larga distancia? <br class="hidden md:block">Contáctanos ahora mismo.
+    </p>
+    <a href="https://wa.me/tu-numero" class="inline-flex items-center bg-blue-700 text-white px-8 py-3.5 rounded-lg font-bold hover:bg-blue-800 transition shadow-lg">
+      Solicitar Cotización de Traslado
+    </a>
+  </div>
+</section>
+
+  <script>
+  function initServicesCarousel() {
+    const container = document.getElementById('services-scroll-container');
+    const cards = document.querySelectorAll('.service-card-wrapper');
+    const dots = document.querySelectorAll('.service-dot');
+
+    if (!container || cards.length === 0 || dots.length === 0) return;
+
+    // Solo activar lógica si estamos en móvil/tablet
+    if (window.innerWidth >= 1024) return;
+
+    const options = {
+      root: container,
+      threshold: 0.6 // Se activa cuando el 60% de la card es visible
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const index = entry.target.getAttribute('data-index');
+          
+          // Resetear todos los dots
+          dots.forEach(dot => {
+            dot.classList.remove('bg-[#0056b3]', 'w-6');
+            dot.classList.add('bg-gray-300', 'w-2');
+          });
+
+          // Activar el dot actual
+          if (dots[index]) {
+            dots[index].classList.remove('bg-gray-300', 'w-2');
+            dots[index].classList.add('bg-[#0056b3]', 'w-6'); // Se vuelve azul y más largo
+          }
+        }
+      });
+    }, options);
+
+    cards.forEach((card) => observer.observe(card));
+  }
+
+  // Ejecutar al cargar y tras cambios de navegación en Astro
+  initServicesCarousel();
+  window.addEventListener('resize', initServicesCarousel);
+  document.addEventListener('astro:after-swap', initServicesCarousel);
+</script>
