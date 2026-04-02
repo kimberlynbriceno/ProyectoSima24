@@ -61,7 +61,7 @@ const plans = [
       </p>
   <div class="max-w-7xl mx-auto">
     <div class="relative">
-      <div id="pricing-scroll-container" class="flex items-stretch lg:grid lg:grid-cols-4 gap-6 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide">
+      <div id="pricing-scroll-container" class="flex items-stretch lg:grid lg:grid-cols-4 gap-6 overflow-x-auto pt-10 pb-10 px-4 snap-x snap-mandatory scrollbar-hide">
         {plans.map((plan, index) => (
           <div class="min-w-[85%] md:min-w-[45%] lg:min-w-full snap-center pricing-card-wrapper flex self-stretch" data-index={index}>
             <PricingCard {...plan} />
@@ -79,7 +79,45 @@ const plans = [
 </section>
 
 <style is:global>
-  /* Ocultar barra de scroll pero mantener funcionalidad */
+  /* 1. CONFIGURACIÓN DEL CONTENEDOR (Evita recortes de esquinas) */
+  .pricing-card-wrapper {
+    perspective: 1000px;
+    display: flex;
+  }
+
+  /* 2. ESTADOS DINÁMICOS DE TEXTO Y ELEMENTOS (Mobile Active) */
+  /* Forzamos que párrafos, spans e iconos sean blancos al activarse la card */
+  .pricing-card-inner.is-active p, 
+  .pricing-card-inner.is-active span,
+  .pricing-card-inner.is-active li {
+    color: white !important;
+    opacity: 0.9;
+  }
+
+  /* Cambia el color de los iconos (Checks de las listas) */
+  .pricing-card-inner.is-active svg {
+    color: white !important;
+    stroke: white !important;
+  }
+
+  /* 3. LÓGICA ESPECÍFICA DEL BOTÓN (Solicitar Cita) */
+  /* Cuando la card está activa, el botón pasa a fondo blanco y letras azules */
+  .pricing-card-inner.is-active .btn-pricing,
+  .pricing-card-inner.is-active a,
+  .pricing-card-inner.is-active button {
+    background-color: white !important;
+    color: #0056b3 !important;
+    border-color: white !important;
+  }
+
+  /* IMPORTANTE: El icono flecha (->) dentro del botón también debe ser azul */
+  .pricing-card-inner.is-active .btn-pricing svg,
+  .pricing-card-inner.is-active a svg {
+    stroke: #0056b3 !important;
+    color: #0056b3 !important;
+  }
+
+  /* 4. REGLAS DE SCROLLBAR (Opcional, para limpieza visual) */
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
@@ -119,17 +157,18 @@ const plans = [
         const dot = dots[index];
 
         if (entry.isIntersecting) {
+          // Añadimos is-active y las clases de escala/shadow
           // Usamos "!" para asegurar que el azul gane sobre el blanco original
-          cardInner?.classList.add('!bg-[#0056b3]', '!border-[#0056b3]', '!text-white', 'scale-105', 'shadow-xl');
+          cardInner?.classList.add('is-active','!bg-[#0056b3]', '!border-[#0056b3]', '!text-white', 'scale-105', 'shadow-xl');
           cardInner?.classList.remove('bg-white', 'text-gray-800');
           
-          dot?.classList.add('bg-blue-600', 'w-5');
+          dot?.classList.add('bg-blue-600', 'w-3');
           dot?.classList.remove('bg-gray-300');
         } else {
-          cardInner?.classList.remove('!bg-[#0056b3]', '!border-[#0056b3]', '!text-white', 'scale-105', 'shadow-xl');
+          cardInner?.classList.remove('is-active','!bg-[#0056b3]', '!border-[#0056b3]', '!text-white', 'scale-105', 'shadow-xl');
           cardInner?.classList.add('bg-white', 'text-gray-800');
           
-          dot?.classList.remove('bg-blue-600', 'w-5');
+          dot?.classList.remove('bg-blue-600', 'w-3');
           dot?.classList.add('bg-gray-300');
         }
       });
