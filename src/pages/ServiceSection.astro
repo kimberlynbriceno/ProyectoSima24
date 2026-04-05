@@ -5,7 +5,7 @@ const servicio = await sanity.fetch('*[_type == "servicio"]');
 console.log("Datos de Sanity:", servicio);
 ---
 
-<section class="relative py-20 px-6 bg-[#ECF9FF] overflow-hidden">
+<section id="servicio" class="relative py-20 px-6 bg-[#ECF9FF] overflow-hidden">
   <div class="absolute inset-0 z-0 flex justify-center items-center pointer-events-none">
     <img 
       src="/src/image/mapa-fondo.jpg" 
@@ -18,7 +18,7 @@ console.log("Datos de Sanity:", servicio);
     
     <div class="text-center mb-16">
       <h2 class="text-4xl md:text-5xl font-black text-[#0056b3] mb-6 font-montserrat">
-        Cobertura Regional y Nacional Inmediata
+        Cobertura Regional y Nacional <span class="text-[#003366]">Inmediata</span>
       </h2>
       <p class="text-gray-600 font-medium max-w-2xl mx-auto font-montserrat">
         Llegamos donde nos necesites por tierra y aire, garantizando soporte vital avanzado en cada kilómetro.
@@ -105,14 +105,14 @@ console.log("Datos de Sanity:", servicio);
           
           // Resetear todos los dots
           dots.forEach(dot => {
-            dot.classList.remove('bg-[#0056b3]', 'w-6');
+            dot.classList.remove('bg-[#0056b3]', 'w-4');
             dot.classList.add('bg-gray-300', 'w-2');
           });
 
           // Activar el dot actual
           if (dots[index]) {
             dots[index].classList.remove('bg-gray-300', 'w-2');
-            dots[index].classList.add('bg-[#0056b3]', 'w-6'); // Se vuelve azul y más largo
+            dots[index].classList.add('bg-[#0056b3]', 'w-4'); // Se vuelve azul y más largo
           }
         }
       });

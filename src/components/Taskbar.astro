@@ -2,10 +2,11 @@
 // Aquí podrías definir los enlaces en un array para que sea más fácil editarlos luego
 const navLinks = [
   
-  { name: 'Servicios', href: '#servicios' },
-  { name: 'Planes de afiliacion', href: '#Planes de afiliacion' },
-  { name: 'Nosotros', href: '#Nosotros' },
-  { name: 'Recursos', href: '#recursos' }
+  { name: 'Servicios', href: '#servicio' },
+  { name: 'Planes de afiliacion', href: '#planes' },
+  { name: 'Consultorio', href: '#consultorio' },
+  { name: 'Nosotros', href: '#nosotros' },
+
 ];
 ---
 
@@ -50,6 +51,13 @@ const navLinks = [
     </div>
   </div>
 </nav>
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+    /* Esto evita que la sección quede tapada por el navbar sticky */
+    scroll-padding-top: 80px; 
+  }
+</style>
 <script>
   // Lógica de Astro: Este script se ejecuta en el cliente
   const setupNavbar = () => {
@@ -83,3 +91,4 @@ const navLinks = [
   setupNavbar();
   document.addEventListener('astro:after-swap', setupNavbar);
 </script>
+

@@ -1,0 +1,66 @@
+---
+// Consultorio.astro
+---
+
+<section id="consultorio" class="py-20 px-6 bg-white overflow-hidden font-montserrat">
+  <div class="max-w-7xl mx-auto ml-10 flex flex-col lg:flex-row items-center gap-12">
+    
+    <div class="w-full lg:w-1/2 space-y-6 text-center lg:text-left order-2 lg:order-1">
+      <h2 class="text-4xl md:text-5xl font-black text-[#003366] leading-tight">
+        Consultorio Médico <br />
+        <span class="text-[#0056b3]">Sima24</span>
+      </h2>
+      
+      <p class="text-gray-600 font-medium max-w-lg mx-auto lg:mx-0">
+        Visítanos en nuestro consultorio para atención médica inmediata y confiable. Fácil acceso y atención profesional.
+      </p>
+
+      <div class="space-y-4 pt-4">
+        <div class="flex items-start justify-center lg:justify-start gap-4 text-gray-700">
+          <div class="bg-blue-50 p-2 rounded-lg text-[#0056b3]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="text-left">
+            <p class="font-bold text-[#003366]">Dirección:</p>
+            <p class="text-sm">Sector El Carmen, Av. 11, Calle 1, El Vigía.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start justify-center lg:justify-start gap-4 text-gray-700">
+          <div class="bg-blue-50 p-2 rounded-lg text-[#0056b3]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="text-left">
+            <p class="font-bold text-[#003366]">Horario:</p>
+            <p class="text-sm italic">Lunes a viernes de 8:00 a.m. a 5:00 p.m. Sábado y domingo cerrado</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-6">
+        <a href="#" class="inline-flex items-center bg-[#0056b3] text-white px-8 py-3.5 rounded-xl font-bold hover:bg-blue-800 transition-all shadow-lg shadow-blue-100 group">
+          Solicitar cita
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ml-2 group-hover:translate-x-1 transition-transform">
+            <path d="M5 12h14m-7-7 7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="w-full lg:w-1/2 relative order-1 lg:order-2">
+      <div class="absolute inset-0 bg-[#00D0B4] rounded-[40px] lg:rounded-[100px] rotate-3 scale-95 opacity-20 -z-10"></div>
+      <div class="absolute inset-0 bg-[#00D0B4] rounded-[40px] lg:rounded-[80px] -z-10"></div>
+      
+      <img 
+        src="/src/image/consultorio-medico.png" 
+        alt="Doctor atendiendo paciente" 
+        class="w-full h-auto object-cover rounded-[40px] lg:rounded-[80px] shadow-2xl"
+      />
+
+      <div class="absolute -top-6 -right-6 text-[#00D0B4] opacity-50 hidden lg:block">
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
+      </div>
+    </div>
+
+  </div>
+</section>
