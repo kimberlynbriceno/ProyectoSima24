@@ -1,55 +1,14 @@
 ---
 import PricingCard from '../components/PricingCard.astro';
+import { client as sanity } from '../lib/sanity.mjs';
 
-const plans = [
-  {
-    isFeatured: true,
-    title: "Plan Gremios Mototaxistas (El Vigía - Mérida)",
-    subtitle: "Protección médica especializada para mototaxistas y pasajeros...",
-    features: [
-      "Ambulancia 24/7 por accidentes.",
-      "Atención del pasajero.",
-      "Consulta médica gratis.",
-      "Rayos X para lesiones por accidentes de trabajo.",
-      "Alianza para medicamentos a crédito."
-    ]
-  },
-  {
-    isFeatured: false,
-    title: "Plan Moto Particular",
-    subtitle: "Protección médica inmediata para motorizados en El Vigía.",
-    features: [
-      "Ambulancia 24/7 Respuesta inmediata en El Vigía para accidentes laborales.",
-      "Consultas gratuitas para afiliados y familiares directos en nuestro consultorio.",
-      "Rayos X sin costo por accidentes laborales.",
-      "Alianza para medicamentos a crédito Farmabien."
-    ]
-  },
-  {
-    isFeatured: false,
-    title: "Plan Hogar Crónico-Paliativo",
-    subtitle: "Cuidados médicos especializados y acompañamiento en casa.",
-    features: [
-      "Ambulancia Prioritaria.",
-      "Telemedicina profesional inmediata.",
-      "02 Consultas frecuentes al mes.",
-      "02 traslados mensuales externos.",
-      "Control a distancia seguimiento.",
-      "Medicamentos a crédito farmabien."
-    ]
-  },
-  {
-    isFeatured: false,
-    title: "Sima Empresa",
-    subtitle: "Soluciones de salud para el bienestar de tus colaboradores.",
-    features: [
-      "Atención inmediata en planta.",
-      "Exámenes pre-empleo.",
-      "Capacitación en primeros auxilios.",
-      "Descuentos corporativos en servicios UCI."
-    ]
-  }
-];
+const planes = await sanity.fetch(`*[_type == "paquete" && activo != false] | order(precio asc) {
+  _id,
+  titulo,
+  subtitulo,
+  precio,
+  beneficios
+}`);
 ---
 
 <section id="planes" class="py-20 px-6 bg-white overflow-hidden font-montserrat">
@@ -61,19 +20,29 @@ const plans = [
       </p>
   <div class="max-w-7xl mx-auto">
     <div class="relative">
-      <div id="pricing-scroll-container" class="flex items-stretch lg:grid lg:grid-cols-4 gap-6 overflow-x-auto pt-10 pb-10 px-4 snap-x snap-mandatory scrollbar-hide">
-        {plans.map((plan, index) => (
+      <div id="pricing-scroll-container" class="flex items-stretch lg:grid lg:grid-cols-4 gap-6 overflow-x-auto pt-10 pb-10 px-4 snap-x snap-mandatory scrollbar-hide"
+      >
+        {planes.length > 0 ? planes.map((plan, index) => (
           <div class="min-w-[85%] md:min-w-[45%] lg:min-w-full snap-center pricing-card-wrapper flex self-stretch" data-index={index}>
-            <PricingCard {...plan} />
+            <PricingCard
+              title={plan.titulo}
+              subtitle={plan.subtitulo}
+              price={plan.precio}
+              features={plan.beneficios || []}
+            />
           </div>
-        ))}
+        )) : (
+          <p class="text-center text-gray-500 w-full">No hay planes disponibles</p>
+        )}
       </div>
 
-      <div class="flex justify-center gap-2 mt-4 lg:hidden">
-        {plans.map((_, index) => (
-          <div class={`pricing-dot w-2 h-2 rounded-full transition-all duration-300 bg-gray-300`} data-index={index}></div>
-        ))}
-      </div>
+      {planes.length > 0 && (
+        <div class="flex justify-center gap-2 mt-4 lg:hidden">
+          {planes.map((_, index) => (
+            <div class={`pricing-dot w-2 h-2 rounded-full transition-all duration-300 bg-gray-300`} data-index={index}></div>
+          ))}
+        </div>
+      )}
     </div>
   </div>
 </section>
