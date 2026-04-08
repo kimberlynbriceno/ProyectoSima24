@@ -67,16 +67,24 @@ const footerLinks = [
     <div class="space-y-6">
       <h3 class="text-lg font-bold border-l-4 border-[#0056b3] pl-4">Afiliación Online</h3>
       <p class="text-sm text-blue-100 italic">Recibe información sobre jornadas médicas y nuevos convenios.</p>
-      <form class="flex flex-col gap-3">
-        <input 
-          type="email" 
-          placeholder="Tu correo electrónico" 
+      <form id="subscription-form" class="flex flex-col gap-3">
+        <input
+          id="email-input"
+          type="email"
+          placeholder="Tu correo electrónico"
+          required
           class="bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-[#0056b3]"
         />
-        <button class="bg-[#0056b3] text-white font-bold py-2 rounded-lg hover:bg-white hover:text-[#0056b3] transition-all">
+        <button type="submit" class="bg-[#0056b3] text-white font-bold py-2 rounded-lg hover:bg-white hover:text-[#0056b3] transition-all">
           Afiliarme
         </button>
       </form>
+      <div id="success-message" class="hidden bg-green-500/20 border border-green-400 text-green-100 px-4 py-3 rounded-lg text-sm flex items-center gap-2">
+        <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+        ¡Afiliación exitosa! Pronto recibirás noticias.
+      </div>
     </div>
   </div>
 
@@ -88,3 +96,26 @@ const footerLinks = [
     </div>
   </div>
 </footer>
+
+<script>
+  const form = document.getElementById('subscription-form') as HTMLFormElement;
+  const successMessage = document.getElementById('success-message') as HTMLDivElement;
+  const emailInput = document.getElementById('email-input') as HTMLInputElement;
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    if (emailInput.value && emailInput.checkValidity()) {
+      // Ocultar formulario y mostrar mensaje de éxito
+      form.classList.add('hidden');
+      successMessage.classList.remove('hidden');
+
+      // Resetear después de 5 segundos
+      setTimeout(() => {
+        form.classList.remove('hidden');
+        successMessage.classList.add('hidden');
+        emailInput.value = '';
+      }, 5000);
+    }
+  });
+</script>
